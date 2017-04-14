@@ -31,6 +31,7 @@ def merge():
     finalQuotesDoc.save('final_docs/finalQuotes.docx')
     finalStoriesDoc.save('final_docs/finalStories.docx')
     tkMessageBox.showinfo("Docu-Merger", "Documents merged!")
+    window.destroy()
 
 window = tk.Tk()
 window.wm_title('Docu-Merger')
