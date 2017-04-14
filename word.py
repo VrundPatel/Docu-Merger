@@ -8,14 +8,28 @@ from docx import Document
 import getFullDocText as fullDoc
 
 def merge():
-    finalDoc = Document()
+    finalQuestionsDoc = Document()
+    finalQuotesDoc = Document()
+    finalStoriesDoc = Document()
     for root, dirs, files in os.walk(os.getcwd()):
         for name in files:
             if 'Questions' in name and name.endswith('.docx'):
                 fullText = fullDoc.getText(os.path.join(root, name))
-                finalDoc.add_heading(name[:-5])
-                finalDoc.add_paragraph(fullText)
-    finalDoc.save('docs/final.docx')
+                finalQuestionsDoc.add_heading(name[:-5])
+                finalQuestionsDoc.add_paragraph(fullText)
+            if 'Quotes' in name and name.endswith('.docx'):
+                fullText = fullDoc.getText(os.path.join(root, name))
+                finalQuotesDoc.add_heading(name[:-5])
+                finalQuotesDoc.add_paragraph(fullText)
+            if 'Stories' in name and name.endswith('.docx'):
+                fullText = fullDoc.getText(os.path.join(root, name))
+                finalStoriesDoc.add_heading(name[:-5])
+                finalStoriesDoc.add_paragraph(fullText)
+    if not os.path.exists('final_docs'):
+        os.makedirs('final_docs')
+    finalQuestionsDoc.save('final_docs/finalQuestions.docx')
+    finalQuotesDoc.save('final_docs/finalQuotes.docx')
+    finalStoriesDoc.save('final_docs/finalStories.docx')
     tkMessageBox.showinfo("Docu-Merger", "Documents merged!")
 
 window = tk.Tk()
