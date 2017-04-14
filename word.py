@@ -13,15 +13,15 @@ def merge():
     finalStoriesDoc = Document()
     for root, dirs, files in os.walk(os.getcwd()):
         for name in files:
-            if 'Questions' in name and name.endswith('.docx'):
+            if 'Questions' in name and name.endswith('.docx') and 'final' not in name:
                 fullText = fullDoc.getText(os.path.join(root, name))
                 finalQuestionsDoc.add_heading(name[:-5])
                 finalQuestionsDoc.add_paragraph(fullText)
-            if 'Quotes' in name and name.endswith('.docx'):
+            if 'Quotes' in name and name.endswith('.docx') and 'final' not in name:
                 fullText = fullDoc.getText(os.path.join(root, name))
                 finalQuotesDoc.add_heading(name[:-5])
                 finalQuotesDoc.add_paragraph(fullText)
-            if 'Stories' in name and name.endswith('.docx'):
+            if 'Stories' in name and name.endswith('.docx') and 'final' not in name:
                 fullText = fullDoc.getText(os.path.join(root, name))
                 finalStoriesDoc.add_heading(name[:-5])
                 finalStoriesDoc.add_paragraph(fullText)
